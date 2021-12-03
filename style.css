@@ -1,0 +1,54 @@
+table{
+    width: 90%;
+    margin: 40px auto;
+}
+
+table.list{
+    text-align: center;
+    width: 100%;
+}
+td{
+    text-align: left;
+    border: 1px solid wheat;
+    padding: 8px 15px;
+}
+
+
+input[type='text'],input[type='number']{
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid wheat;
+    border-radius: 5px;
+}
+input[type='radio'],input[type='checkbox']{
+    margin: 15px 0;
+}
+input[type='submit']{
+    background: rgb(230, 197, 230);
+    padding: 6px 12px;
+    margin: 15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+input[type='submit']:hover{
+    background: #4b99d8;
+}
+
+
+button{
+
+    background: rgb(230, 197, 230);
+    padding: 6px 12px;
+    margin: 15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+
+}
