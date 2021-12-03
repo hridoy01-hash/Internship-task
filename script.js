@@ -29,12 +29,18 @@ function readFromData(){
         genderValue = document.getElementById('female').value;
         formData['gender'] = genderValue;
       }
+
+      /* let checkedBox = document.querySelector('input[type="checkbox"]:checked').value;
+      formData['hobbies'] = checkedBox;
+      console.log(formData['hobbies']); */ 
       
-      /* var hobbies ={}
-      hobbies['cricket'] = document.getElementById('cricket').value; 
-      hobbies['football'] = document.getElementById('football').value;
-      formData['hobbies'] = hobbies['cricket']
-      formData['hobbies'] = hobbies['football'] */      
+      
+      var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');  
+      for (var checkbox of markedCheckbox) {  
+         
+        formData['hobbies']=(checkbox.value);
+          
+      }  
       
     return formData;
 }
@@ -79,6 +85,7 @@ function updateUserInfo(formData){
     selectedRow.cells[0].innerHTML = formData.name;
     selectedRow.cells[1].innerHTML = formData.address;
     selectedRow.cells[2].innerHTML = formData.phone;
+    selectedRow.cells[3].innerText = formData.gender;
     
 }
 
@@ -98,18 +105,6 @@ function resetForm(){
     document.getElementById('phone').value = '';
     document.getElementById('address').value = '';
     
+    
 }
 
-
-
-/* var gender = document.getElementById('gender').value;
-var formData;
-if(gender =='male'){
-    formData = document.getElementById('male').value;
-    
-}else if(gender =='female'){
-    formData = document.getElementById('female').value;
-    
-}   */
-
-// document.getElementById('results').innerHTML = genderValue;
