@@ -5,13 +5,13 @@ function formOnSubmit(e){
     event.preventDefault();
     var formData = readFromData();
     if(selectedRow === null){
-        insertNewRecord(formData);
+        insertNewUser(formData);
     }else{
         updateUserInfo(formData);
     }
 
   resetForm();
-
+  
 }
 
 //get data frome input field
@@ -31,9 +31,10 @@ function readFromData(){
       }  
       
       
-      var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');  
+      let markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');  
+       formData['hobbies'] = []   
       for (var checkbox of markedCheckbox) {        
-        formData['hobbies']=(checkbox.value);
+        formData['hobbies'].push(checkbox.value);
           
       }  
       
@@ -41,34 +42,35 @@ function readFromData(){
 }
 
 //insert new data
-function insertNewRecord(data){
-  var table = document.getElementById('storeList').getElementsByTagName('tbody')[0];
-  var newRow = table.insertRow(table.length);
-  
-  var cell1 = newRow.insertCell(0);
+function insertNewUser(data){
+  const table = document.getElementById('storeList').getElementsByTagName('tbody')[0];
+  let newRow = table.insertRow(table.length);
+  newRow.setAttribute("onclick",`onModal('${JSON.stringify(data)}')`);
+
+  const cell1 = newRow.insertCell(0);
       cell1.innerHTML = data.name;
 
-  var cell2 = newRow.insertCell(1);
+  const cell2 = newRow.insertCell(1);
       cell2.innerHTML = data.address;
 
-  var cell3 = newRow.insertCell(2);
+  const cell3 = newRow.insertCell(2);
       cell3.innerHTML = data.phone;
 
-  var cell4 = newRow.insertCell(3);
+  const cell4 = newRow.insertCell(3);
       cell4.innerHTML = data.gender;
   
-      var cell5 = newRow.insertCell(4);
+   const cell5 = newRow.insertCell(4);
       cell5.innerHTML = data.hobbies;
 
-  var cell6 = newRow.insertCell(5);
-      cell6.innerHTML = `<button onClick='onEdit(this)'>Edit</button> <button onClick='onDelete(this)'>Delete</button>`;
+  const cell6 = newRow.insertCell(5);
+      cell6.innerHTML = `<button onClick='editUserInfo(this)'>Edit</button> <button onClick='deleteUser(this)'>Delete</button>`;
 
 }
 
 
 
 //Edit the data
-function onEdit(td){
+function editUserInfo(td){
     selectedRow = td.parentElement.parentElement;
     document.getElementById('name').value = selectedRow.cells[0].innerHTML;
     document.getElementById('address').value = selectedRow.cells[1].innerHTML;
@@ -87,7 +89,7 @@ function updateUserInfo(formData){
 }
 
 //Delete the data
-function onDelete(td){
+function deleteUser(td){
     if(confirm('Do you want to delete this record?')){
         row = td.parentElement.parentElement;
         document.getElementById('storeList').deleteRow(row.rowIndex);
@@ -96,9 +98,10 @@ function onDelete(td){
 }
 
 //Modal function
-function onModal(){
-  alert('Clicked row');
-
+function onModal(data){
+  let trData = JSON.parse(data);
+  document.getElementById('userName').innerText = trData.name;
+  console.log(trData.name)
 }
 
 
@@ -107,8 +110,6 @@ function resetForm(){
     document.getElementById('name').value = '';
     document.getElementById('phone').value = '';
     document.getElementById('address').value = '';
-    selectedRow = null;
-
-    
+    selectedRow = null;    
 }
 
