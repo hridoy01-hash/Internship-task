@@ -1,4 +1,4 @@
-var selectedRow = null;
+let selectedRow = null;
 
 //form submit function
 function formOnSubmit(e){
@@ -9,9 +9,7 @@ function formOnSubmit(e){
     }else{
         updateUserInfo(formData);
     }
-
-  resetForm();
-  
+  resetForm(); 
 }
 
 //get data frome input field
@@ -29,13 +27,11 @@ function readFromData(){
         genderValue = document.getElementById('female').value;
         formData['gender'] = genderValue;
       }  
-      
-      
+         
       let markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');  
        formData['hobbies'] = []   
       for (var checkbox of markedCheckbox) {        
-        formData['hobbies'].push(checkbox.value);
-          
+        formData['hobbies'].push(checkbox.value);      
       }  
       
     return formData;
@@ -108,7 +104,7 @@ function onModal(data){
          Phone : ${trData.phone}
          Gender : ${trData.gender}
          Hobbies: ${trData.hobbies}
-        `)
+        `);
 }
 
 
