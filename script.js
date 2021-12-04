@@ -63,14 +63,13 @@ function insertNewUser(data){
       cell5.innerHTML = data.hobbies;
 
   const cell6 = newRow.insertCell(5);
-      cell6.innerHTML = `<button onClick='editUserInfo(this)'>Edit</button> <button onClick='deleteUser(this)'>Delete</button>`;
-      console.log(this);
+      cell6.innerHTML = `<button onClick='editUserInfo(this)'>Edit</button> <button onClick='deleteUser(this)'>Delete</button>`;     
 
 }
 
 
 
-//Edit user information
+//Edit an user information
 function editUserInfo(td){
     
     selectedRow = td.parentElement.parentElement;
@@ -99,8 +98,8 @@ function deleteUser(td){
     resetForm();
 }
 
-//Modal function
 
+//Modal function
 function onModal(data){
   let trData = JSON.parse(data);
   console.log(trData.name);
