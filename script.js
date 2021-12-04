@@ -1,11 +1,11 @@
 var selectedRow = null;
 
 //form submit function
-function formOnSubmit(){
+function formOnSubmit(e){
     event.preventDefault();
     var formData = readFromData();
     if(selectedRow === null){
-        insertNewRecord(formData)
+        insertNewRecord(formData);
     }else{
         updateUserInfo(formData);
     }
@@ -21,23 +21,18 @@ function readFromData(){
     formData['address'] = document.getElementById('address').value;
     formData['phone'] = document.getElementById('phone').value;
     
-    if (document.getElementById('male').checked) {
+     if (document.getElementById('male').checked) {
         genderValue = document.getElementById('male').value;
         formData['gender'] = genderValue
       }
     else if (document.getElementById('female').checked) {
         genderValue = document.getElementById('female').value;
         formData['gender'] = genderValue;
-      }
-
-      /* let checkedBox = document.querySelector('input[type="checkbox"]:checked').value;
-      formData['hobbies'] = checkedBox;
-      console.log(formData['hobbies']); */ 
+      }  
       
       
       var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');  
-      for (var checkbox of markedCheckbox) {  
-         
+      for (var checkbox of markedCheckbox) {        
         formData['hobbies']=(checkbox.value);
           
       }  
@@ -79,13 +74,15 @@ function onEdit(td){
     document.getElementById('address').value = selectedRow.cells[1].innerHTML;
     document.getElementById('phone').value = selectedRow.cells[2].innerHTML;
     document.getElementById('gender').innerText = selectedRow.cells[3].innerHTML;
+    document.getElementById('hobbies').innerText = selectedRow.cells[4].innerHTML;
 }
 
 function updateUserInfo(formData){
     selectedRow.cells[0].innerHTML = formData.name;
     selectedRow.cells[1].innerHTML = formData.address;
     selectedRow.cells[2].innerHTML = formData.phone;
-    selectedRow.cells[3].innerText = formData.gender;
+    selectedRow.cells[3].innerText = formData.gender; 
+    selectedRow.cells[4].innerText = formData.hobbies; 
     
 }
 
@@ -98,13 +95,20 @@ function onDelete(td){
     resetForm();
 }
 
+//Modal function
+function onModal(){
+  alert('Clicked row');
+
+}
+
 
 //Reset the data
 function resetForm(){
     document.getElementById('name').value = '';
     document.getElementById('phone').value = '';
     document.getElementById('address').value = '';
-    
+    selectedRow = null;
+
     
 }
 
