@@ -41,7 +41,7 @@ function readFromData(){
     return formData;
 }
 
-//insert new data
+//insert new user
 function insertNewUser(data){
   const table = document.getElementById('storeList').getElementsByTagName('tbody')[0];
   let newRow = table.insertRow(table.length);
@@ -64,13 +64,15 @@ function insertNewUser(data){
 
   const cell6 = newRow.insertCell(5);
       cell6.innerHTML = `<button onClick='editUserInfo(this)'>Edit</button> <button onClick='deleteUser(this)'>Delete</button>`;
+      console.log(this);
 
 }
 
 
 
-//Edit the data
+//Edit user information
 function editUserInfo(td){
+    
     selectedRow = td.parentElement.parentElement;
     document.getElementById('name').value = selectedRow.cells[0].innerHTML;
     document.getElementById('address').value = selectedRow.cells[1].innerHTML;
@@ -88,7 +90,7 @@ function updateUserInfo(formData){
     
 }
 
-//Delete the data
+//Delete an User
 function deleteUser(td){
     if(confirm('Do you want to delete this record?')){
         row = td.parentElement.parentElement;
@@ -98,10 +100,16 @@ function deleteUser(td){
 }
 
 //Modal function
+
 function onModal(data){
   let trData = JSON.parse(data);
-  document.getElementById('userName').innerText = trData.name;
-  console.log(trData.name)
+  console.log(trData.name);
+  alert(`User Name : ${trData.name}
+         Address : ${trData.address}
+         Phone : ${trData.phone}
+         Gender : ${trData.gender}
+         Hobbies: ${trData.hobbies}
+        `)
 }
 
 
@@ -112,4 +120,6 @@ function resetForm(){
     document.getElementById('address').value = '';
     selectedRow = null;    
 }
+
+
 
